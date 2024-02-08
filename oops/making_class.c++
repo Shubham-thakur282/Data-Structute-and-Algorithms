@@ -14,11 +14,21 @@ public:
     char level;
 
     // constructors
-    Hero(){
-        cout << "Constructor called!" << endl;
+    // Hero(){
+    //     cout << "Constructor called!" << endl;
+    // }
+
+    // parametrized constructor
+    Hero(int health){
+        cout << "this->" << this << endl;
+        this->health = health;
+
     }
 
-
+    Hero(int health, char level){
+        this -> health = health;
+        this -> level = level;
+    }
     // below functions are getters and setters
     // get function are getter
     // set function are setter
@@ -38,32 +48,43 @@ public:
         level = ch;
     }
 
+    void print(){
+        cout << health << "  " << level << endl;;
+    }
+
 };
 
 int main()
 {
 
     // creating an object for the hero class
-    cout << "hi" << endl;
+    // cout << "hi" << endl;
     // statically
-    Hero sh;
-    cout << "between " << endl;
+    Hero sh(100,'A');
+    // cout << "Address:- " << &sh << endl;
+    sh.print();
+
+    Hero *temp = new Hero(80,'B');
+    temp -> print();
+
+
+    // cout << "between " << endl;
     // dynamically
-    Hero *b = new Hero;
-    cout << "Hello" << endl;
+    // Hero *b = new Hero(80);
+    // cout << "Hello" << endl;
     // above is the static allocation to create an object
     // size of the object is equal to the number of properties described in the class such that fot above if char[100] size is 100 and health size is 4 and char level is 4 so total will be 108 4
     // for an empty class size of object is 1
     // sh.health = 100;
-    cout << sizeof(sh) << endl;
+    // cout << sizeof(sh) << endl;
 
     // sh.name = "Shubham";
 
     // sh.health = 100;
-    sh.setLevel('A');
-    sh.setHealth(100);
-    cout << sh.getHealth() << endl;
-    cout << sh.getLevel() << endl;
+    // sh.setLevel('A');
+    // sh.setHealth(100);
+    // cout << sh.getHealth() << endl;
+    // cout << sh.getLevel() << endl;
 
     return 0;
 }
