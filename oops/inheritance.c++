@@ -55,9 +55,11 @@ int main(){
     string str;
     cout<<sizeof(str)<<endl;
     Male obj1;
+    Human obj2;
     obj1.age = 20;
 
-    cout << sizeof(obj1) << endl;
+    cout << "Human:- " << sizeof(obj2) << endl;
+    cout << "Male:- " << sizeof(obj1) << endl;
     cout << obj1.getAge() << endl;
     obj1.sleep();
     // cout << obj1.sleep() << endl; showing error because sleep is not returning anythin
