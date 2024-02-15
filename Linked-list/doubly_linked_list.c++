@@ -14,6 +14,22 @@ public:
         this->prev = NULL;
         this->next = NULL;
     }
+
+    ~Node(){
+        int value = this -> data;
+        if(this -> next != NULL){
+            delete next;
+            this -> next = NULL;
+        }
+
+        if(this -> prev != NULL){
+            delete prev;
+            this -> prev = NULL;
+        }
+
+        cout << "Memory is free for node with data:- " << value << endl;
+    }
+
 };
 
 // traversing a linked list
@@ -114,6 +130,39 @@ void insertAtPosition(Node *&head, Node *&tail, int position, int d)
     curr->next = newNode;
 }
 
+void deleteNode(int position,Node* &head,Node* &tail){
+    if(position == 1){
+        Node * temp = head;
+        head = temp -> next;
+        temp -> next -> prev = NULL;
+        temp -> next = NULL;
+        delete temp;
+    }
+    else{
+        Node* curr = head;
+        Node* prev = NULL;
+        int count = 1;
+        while(count < position){
+            prev = curr;
+            curr = curr -> next;
+            count++; 
+        }
+
+        if(curr -> next == NULL){
+            tail = prev;
+            prev -> next = NULL;
+            curr -> next = NULL;
+            curr -> prev = NULL;
+            delete curr;
+            return ;
+        }
+        prev -> next = curr -> next;
+        curr -> next -> prev = curr -> prev;
+        curr -> next = NULL;
+        curr -> prev = NULL;
+        delete curr;
+    }
+}
 
 int main()
 {
@@ -137,6 +186,8 @@ int main()
     insertAtPosition(head, tail, 1, 1);
     print(head);
     insertAtPosition(head, tail, 4, 5);
+    print(head);
+    deleteNode(1,head,tail);
     print(head);
 
     cout << "Head:- " << head->data << endl;
