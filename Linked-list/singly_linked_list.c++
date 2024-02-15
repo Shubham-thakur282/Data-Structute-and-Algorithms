@@ -28,18 +28,31 @@ class List{
 
 
 // insert from head/start
-void insertAtHead(List* &head ,int d){
+void insertAtHead(List* &head ,List* & tail,int d){
     // create new node
+    if(head == NULL){
+        List* temp = new List(d);
+        head = temp;
+        tail = temp;
+    }else{
     List* temp = new List(d);
     temp -> next = head; //point next pointer of the temp to the previous node
     head = temp; //change the head to the new node
+    }
 }
 
 // insert from tail/end
-void insertAtTail(List* &tail,int d){
+void insertAtTail(List* &tail,List* &head,int d){
+    if(tail == NULL){
+        List* temp = new List(d);
+        tail = temp;
+        head = temp;
+    }else{
+
     List* temp = new List(d);//create new node
     tail -> next = temp; // point the previous node to new node
     tail = temp; //change the tail from previous to new node
+    }
 }
 
 // insert in middle
@@ -47,7 +60,7 @@ void insertAtPosition(List* &head,List* &tail,int position,int d){
 
     // this is case when we insert at starting / head
     if(position == 1){
-        insertAtHead(head,d);
+        insertAtHead(head,tail,d);
         return ;
     }
 
@@ -60,7 +73,7 @@ void insertAtPosition(List* &head,List* &tail,int position,int d){
 
     // inserting at tail
     if(temp -> next == NULL){
-        insertAtTail(tail,d);
+        insertAtTail(tail,head,d);
         return ;
     }
 
@@ -116,29 +129,29 @@ void print(List* &head){
 
 int main(){
 
-    List* node1 = new List(100);
+    // List* node1 = new List(100);
 
     // cout << node1 -> data << endl;
     // cout << node1 -> next << endl;
 
-    List* head = node1;
-    List* tail = node1;
+    List* head = NULL;
+    List* tail = NULL;
     print(head);
-    insertAtTail(tail,12);
+    insertAtTail(tail,head,12);
     print(head);
-    insertAtTail(tail,14);  
+    insertAtTail(tail,head,14);  
     print(head);
-    insertAtTail(tail,17);
+    insertAtTail(tail,head,17);
     print(head);
-    insertAtTail(tail,190);
+    insertAtTail(tail,head,190);
     print(head);
     insertAtPosition(head,tail,3,71);
     print(head);
     insertAtPosition(head,tail,1,69);
     print(head);
-    insertAtPosition(head,tail,8,32);
+    insertAtPosition(head,tail,7,32);
     print(head);
-    deleteNode(8,head,tail);
+    deleteNode(7,head,tail);
     print(head);
 
     cout << "Head:- " << head -> data << endl; 
