@@ -51,6 +51,10 @@ void insertNode(Node * &tail, int element,int d){
 
 void print(Node * &tail){
     Node* temp = tail;
+    if(tail == NULL){
+        cout << "List is empty \n";
+        return ;
+    }
     do
     {
         cout << temp -> data <<" ";
@@ -61,10 +65,55 @@ void print(Node * &tail){
     
 }
 
+void deleteNode(Node * &tail,int val){
+    // empty list
+    if(tail == NULL){
+        cout << "List is empty" << endl;
+    }
+    else{
+        Node * prev = tail;
+        Node * curr = tail -> next;
+
+        if(curr == prev){
+            tail = NULL;
+            curr -> next = NULL;
+            delete curr;
+            return ;
+        }
+
+        while(curr -> data != val && curr->next !=tail){
+            prev = curr;
+            curr = curr -> next;
+            // if(curr -> next == tail){
+            //     cout << "Element Not Found!" << endl;
+            //     return ;
+            // }
+        }
+
+        if(curr -> data !=val){
+            cout << val << " is not present in the list " << endl;
+            return ;
+        }
+
+        if(curr == prev){
+            tail = NULL;
+        }
+
+        if(curr == tail){
+            tail = curr -> next;
+        }
+
+        prev -> next = curr -> next;
+        curr -> next = NULL;
+        delete curr;
+    }
+}
+
 int main(){
 
     // Node * node1 = new Node(10);
     Node * tail = NULL;
+    
     insertNode(tail,3,5);
     print(tail);
     insertNode(tail,5,10);
@@ -72,6 +121,10 @@ int main(){
     insertNode(tail,5,20);
     print(tail);
     insertNode(tail,20,40);
+    print(tail);
+    
+
+    deleteNode(tail,30);
     print(tail);
 
     cout << "Tail:- " << tail -> data << endl;
