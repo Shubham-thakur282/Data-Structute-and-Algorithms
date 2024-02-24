@@ -174,7 +174,7 @@ int main(){
     print(head);
     deleteNode(7,head,tail);
     print(head);
-    head = kreverse(head,2);
+    head = kreverse(head,4);
     print(head);
     cout << "Head:- " << head -> data << endl; 
     cout << "Tail:- " << tail -> data << endl; 

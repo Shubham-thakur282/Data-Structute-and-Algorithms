@@ -127,6 +127,23 @@ void print(List* &head){
 }
 
 
+bool checkCircular(List* head)
+{
+    if(head == NULL){
+        return 1;
+    }
+    List * temp = head -> next;
+    while(temp != NULL){
+        if(temp == head)
+            return 1;
+        temp = temp -> next;
+    }
+
+    return 0;
+
+}
+
+
 int main(){
 
     // List* node1 = new List(100);
@@ -153,6 +170,12 @@ int main(){
     print(head);
     deleteNode(7,head,tail);
     print(head);
+
+    if(checkCircular(tail)){
+        cout << "Linked list is circular!" << endl;
+    }else{
+        cout << "Linked list is not circular!" << endl;
+    }
 
     cout << "Head:- " << head -> data << endl; 
     cout << "Tail:- " << tail -> data << endl; 
