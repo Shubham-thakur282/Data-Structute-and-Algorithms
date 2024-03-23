@@ -239,6 +239,8 @@ int main()
     // insertAtPosition(head,tail,7,32);
     insertAtTail(tail, head, 5);
     print(head);
+    insertAtTail(tail, head, 5);
+    print(head);
     // deleteNode(7,head,tail);
     // print(head);
 

@@ -192,7 +192,6 @@ Node *removeDuplicate(Node *&head)
             cout << map[curr -> data] << endl;
             prev -> next = curr;
             prev = prev -> next;
-            
         }
         curr = curr -> next;
     }
@@ -230,6 +229,8 @@ int main()
     print(head);
     // insertAtPosition(head,tail,7,32);
     insertAtTail(tail, head, 5);
+    print(head);
+    insertAtTail(tail, head, 4);
     print(head);
     insertAtTail(tail, head, 4);
     print(head);
