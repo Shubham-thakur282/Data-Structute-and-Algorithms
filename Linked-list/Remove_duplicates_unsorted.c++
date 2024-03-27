@@ -200,7 +200,6 @@ Node *removeDuplicate(Node *&head)
 
 }
 
-
 int main()
 {
     // Node* node1 = new Node(100);
