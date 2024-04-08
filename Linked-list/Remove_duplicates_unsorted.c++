@@ -1,5 +1,7 @@
 #include <iostream>
 #include <unordered_map>
+#include <unordered_set>
+
 using namespace std;
 
 class Node
@@ -149,7 +151,7 @@ void print(Node *&head)
 }
 
 bool checkCircular(Node *head)
-{
+{   
     if (head == NULL)
     {
         return 1;
@@ -172,31 +174,24 @@ Node *removeDuplicate(Node *&head)
         return head;
 
     
-    unordered_map<int,int> map;
+    unordered_set<int> map;
 
-    Node * temp = head;
-    
-    while(temp != NULL)
-    {
-        map[temp -> data] += 1;
-        temp = temp -> next;
-    }
-
-    Node *curr = head;
-    Node *prev = new Node(0);
-    
-    head = prev;
+    Node * curr = head;
+    Node * prev = NULL;
 
     while(curr != NULL){
-        if(map[curr -> data] == 1){
-            cout << map[curr -> data] << endl;
-            prev -> next = curr;
-            prev = prev -> next;
+        if(map.find(curr -> data) != map.end()){
+            prev -> next = curr -> next;
+            delete curr;
+            curr = curr -> next;
+        }else{
+            map.insert(curr -> data);
+            prev = curr;
+            curr = curr -> next;
         }
-        curr = curr -> next;
     }
     
-    return head -> next;
+    return head;
 
 }
 
