@@ -22,17 +22,17 @@ public:
     }
 
     // destructor
-    ~Node()
-    {
-        int value = this->data;
-        // memory free
-        if (this->next != NULL)
-        {
-            delete next;
-            this->next = NULL;
-        }
-        cout << "Memory is free for node with data:- " << value << endl;
-    }
+    // ~Node()
+    // {
+    //     int value = this->data;
+    //     // memory free
+    //     if (this->next != NULL)
+    //     {
+    //         delete next;
+    //         this->next = NULL;
+    //     }
+    //     cout << "Memory is free for node with data:- " << value << endl;
+    // }
 };
 
 // insert from head/start
@@ -151,7 +151,7 @@ void print(Node *&head)
 }
 
 bool checkCircular(Node *head)
-{   
+{
     if (head == NULL)
     {
         return 1;
@@ -171,28 +171,57 @@ Node *removeDuplicate(Node *&head)
 {
 
     if (head == NULL || head->next == NULL)
+    {
         return head;
-
-    
-    unordered_set<int> map;
-
-    Node * curr = head;
-    Node * prev = NULL;
-
-    while(curr != NULL){
-        if(map.find(curr -> data) != map.end()){
-            prev -> next = curr -> next;
-            delete curr;
-            curr = curr -> next;
-        }else{
-            map.insert(curr -> data);
-            prev = curr;
-            curr = curr -> next;
-        }
     }
-    
-    return head;
 
+    unordered_set<int> seen;
+    Node *curr = head;
+    Node *prev = NULL;
+
+    while (curr != NULL)
+    {
+        if (seen.find(curr->data) != seen.end())
+        {
+            prev->next = curr->next;
+            delete curr;
+        }
+        else
+        {
+            seen.insert(curr->data);
+            prev = curr;
+        }
+        curr = prev->next;
+    }
+    return head;
+}
+
+void duplicates(Node *&head,Node *& tail)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        return;
+    }
+
+    unordered_set<int> seen;
+    Node *curr = head;
+    Node *prev = NULL;
+    while (curr != NULL)
+    {
+        cout << "Data: " << curr -> data << endl;
+        if (seen.find(curr->data) != seen.end())
+        {
+            prev->next = curr->next;
+            delete curr;
+        }
+        else
+        {
+            seen.insert(curr->data);
+            prev = curr;
+        }
+        curr = prev -> next;
+    }
+    tail = prev;
 }
 
 int main()
@@ -228,13 +257,15 @@ int main()
     print(head);
     insertAtTail(tail, head, 4);
     print(head);
+    insertAtTail(tail, head, 7);
+    print(head);
     // deleteNode(7,head,tail);
     // print(head);
 
     cout << "Head:- " << head->data << endl;
     cout << "Tail:- " << tail->data << endl;
 
-    head = removeDuplicate(head);
+    duplicates(head,tail);
     print(head);
 
     return 0;
