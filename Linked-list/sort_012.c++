@@ -72,6 +72,7 @@ void duplicates(Node *&head)
 
 void sort(Node* &head){
     // Approach 1
+    // data is replaced node remains at same place
     Node* temp = head;
     int countZero = 0;
     int countOne = 0;
@@ -107,6 +108,55 @@ void sort(Node* &head){
         temp = temp -> next;
         count++;
     }
+
+}
+
+// approach 2nd 
+void sort2(Node * head){
+    // done without replacement of data instead node are replaced
+    Node * zero = new Node(0);
+    Node * one = new Node(1);
+    Node * two = new Node(2);
+
+    Node * temp  = head;
+
+    Node * temp0 = zero;
+    Node * temp1 = one;
+    Node * temp2 = two;
+
+    while(temp != NULL){
+        if(temp -> data == 0){
+            temp0 -> next = temp;
+            temp0 = temp0 -> next;
+        }
+        if(temp -> data == 1){
+            temp1 -> next = temp;
+            temp1 = temp1 -> next;
+        }
+        if(temp -> data == 2){
+            temp2 -> next = temp;
+            temp2 = temp2 -> next;
+        }
+        temp = temp -> next;
+    }
+
+    if(one -> next != NULL)
+        temp0 -> next = one -> next;
+    else
+        temp0 -> next = two -> next;
+
+    if(two -> next != NULL)
+        temp1 -> next = two -> next;
+
+    temp2 -> next = NULL;
+    
+    head = zero -> next;
+    
+    delete zero;
+    delete one;
+    delete two;
+
+    
 
 }
 
