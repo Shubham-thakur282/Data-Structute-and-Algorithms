@@ -51,16 +51,10 @@ Node * addTwoNums(Node* head1, Node * head2){
 
     while(head1 != NULL && head2 != NULL){
         int digit = head1 -> data + head2 -> data + carry;
-        if(digit > 9){
-            carry = digit % 10;
-            
-        }
-        else{
-            carry = 0;
-        }
+        carry = digit / 10;
+        digit = digit % 10;
         cout << carry << endl;
-        // digit = digit / 10;
-         
+        
         temp -> next = new Node(digit);
         temp = temp -> next;
         head1 = head1 -> next;
@@ -69,8 +63,8 @@ Node * addTwoNums(Node* head1, Node * head2){
 
     while(head1 != NULL){
         int digit = head1 -> data + carry;
-        carry = digit % 10;
-        digit = digit / 10;
+        carry = digit / 10;
+        digit = digit % 10;
         temp -> next = new Node(digit);
         temp = temp -> next;
         head1 = head1 -> next;
@@ -78,8 +72,8 @@ Node * addTwoNums(Node* head1, Node * head2){
 
     while(head2 != NULL){
         int digit = head2 -> data + carry;
-        carry = digit % 10;
-        digit = digit / 10;
+        carry = digit / 10;
+        digit = digit % 10;
         temp -> next = new Node(digit);
         temp = temp -> next;
         head2 = head2 -> next;
