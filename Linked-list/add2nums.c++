@@ -86,13 +86,15 @@ Node * addTwoNums(Node* head1, Node * head2){
     return newHead -> next;
 }
 
+
+
 int main()
 {
-    Node *head1 = new Node(9);
-    head1->next = new Node(2);
-    head1->next->next = new Node(1);
-    head1 -> next -> next ->next = new Node(2);
-    head1 -> next -> next -> next -> next = new Node(1);
+    Node *head1 = new Node(0);
+    head1->next = new Node(0);
+    head1->next->next = new Node(0);
+    head1 -> next -> next ->next = new Node(0);
+    head1 -> next -> next -> next -> next = new Node(0);
     // head -> next -> next -> next -> next -> next = new Node(1);
     // head -> next -> next -> next -> next -> next -> next = new Node(0);
     // head -> next -> next -> next -> next -> next -> next -> next = new Node(0);
@@ -103,11 +105,11 @@ int main()
     // duplicates(head);
     print(head1);
 
-    Node *head = new Node(1);
-    head->next = new Node(2);
-    head->next->next = new Node(1);
-    head -> next -> next ->next = new Node(2);
-    head -> next -> next -> next -> next = new Node(1);
+    Node *head = new Node(0);
+    head->next = new Node(0);
+    head->next->next = new Node(0);
+    head -> next -> next ->next = new Node(0);
+    head -> next -> next -> next -> next = new Node(0);
     print(head);
 
     head = addTwoNums(head1,head);
