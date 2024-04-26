@@ -33,6 +33,8 @@ int main()
     cout<<i<<endl;
     cout<<*p<<endl;
     cout<<**q<<endl;
+
+    cout << sizeof(q) << endl;
     
 
     // cout << p << "-" << q << endl;
