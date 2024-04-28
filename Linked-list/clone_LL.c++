@@ -90,7 +90,7 @@ Node *clone2(Node *head)
     Node *newHead = new Node(0);
     Node *temp1 = newHead;
     Node *temp = head;
-
+    // clone the LL
     while (temp != NULL)
     {
         temp1->next = new Node(temp->data);
@@ -100,7 +100,7 @@ Node *clone2(Node *head)
     newHead = newHead->next;
     temp = head;
     temp1 = newHead;
-
+    // make both the LL into zig zag format
     while (temp != NULL && temp1 != NULL)
     {
         Node *forward = temp->next;
@@ -111,33 +111,30 @@ Node *clone2(Node *head)
         temp = forward;
         temp1 = forward1;
     }
-    print(head);
     temp = head;
     temp1 = newHead;
-    while (temp1 != NULL)
+    // clone random pointers
+    while (temp->next->next != NULL)
     {
-        temp1->random = temp->random->next;
+        if (temp->random->next != NULL)
+            temp1->random = temp->random->next;
         temp = temp->next->next;
-        cout << "A"
-             << " ";
-        if(temp -> next  != NULL)
+        if (temp->next != NULL)
             temp1 = temp1->next->next;
     }
+
     temp = head;
-    cout << endl;
-    while(temp != NULL){
-        cout << temp -> random -> data <<" ";
-        temp = temp -> next;
-    }
-    cout << endl;
-    cout << "here\n";
-    print(head);
     temp1 = newHead;
-    while (temp1 -> next != NULL)
+    // zig zag to seprate LL
+    while (temp != NULL && temp1 != NULL)
     {
-        temp1->next = temp1->next->next;
-        cout << temp1->data << " ";
+        temp->next = temp1->next;
         temp = temp->next;
+        if (temp != NULL)
+        {
+            temp1->next = temp->next;
+            temp1 = temp1->next;
+        }
     }
     return newHead;
 }
