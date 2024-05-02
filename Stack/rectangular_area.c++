@@ -15,7 +15,7 @@ vector<int> nextSmaller(vector<int> arr, int n)
             st.pop();
         }
         ans[i] = st.top();
-        st.push(curr);
+        st.push(i);
     }
 
     return ans;
@@ -34,7 +34,7 @@ vector<int> prevSmaller(vector<int> arr, int n)
             st.pop();
         }
         ans[i] = st.top();
-        st.push(curr);
+        st.push(i);
     }
     return ans;
 }
