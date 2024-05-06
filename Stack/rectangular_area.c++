@@ -26,7 +26,7 @@ vector<int> prevSmaller(vector<int> arr, int n)
     vector<int> ans(n);
     stack<int> st;
     st.push(-1);
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; i < n; i++)
     {
         int curr = arr[i];
         while (st.top() != -1 && arr[st.top()] >= curr)
