@@ -55,7 +55,6 @@ int largestRectangle(vector<int> &heights)
     vector<int> prev(n);
     prev = prevSmaller(heights, n);
     print(prev);
-
     int area = INT_MIN;
     for (int i = 0; i < n; i++)
     {
