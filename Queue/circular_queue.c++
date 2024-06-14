@@ -35,12 +35,50 @@ class queue{
                 cout << "Queue is empty" << endl;
                 return ;
             }
+            int ans = arr[front];
+            arr[front] = -1;
+            if(front == rear){
+                front = rear = -1;
+            }
+            else if(front == size - 1){
+                front = 0; //to maintain cyclic nature
+            }
+            else{
+                front++;
+            }
+        }
+
+        void print(){
+            if(front == -1){
+                cout << "Queue is empty" << endl;
+            }
+
+            int i = front;
+            do{
+                if(i==size-1 && i != rear){
+                    i = 0;
+                    cout << arr[i] << " ";
+                    continue;
+                }
+                cout << arr[i] << " ";
+                i++;
+            }while(i!=rear+1);
 
         }
 
 };
 
 int main(){
+    queue obj1;
+    obj1.enqueue(10);
+    obj1.enqueue(20);
+    obj1.enqueue(30);
+    
+    obj1.print();
+
+    obj1.deque();
+    cout << endl;
+    obj1.print();
 
     return 0;
 }
