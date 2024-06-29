@@ -90,7 +90,7 @@ Node *merge(Node *left, Node *right)
     }
     while (right != NULL)
     {
-        temp->next = left;
+        temp->next = right;
         right = right->next;
         temp = temp->next;
     }
